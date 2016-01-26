@@ -27,8 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 gem 'quiet_assets', group: :development
 
-gem 'thin'
-# Use Unicorn as the app server
+gem 'thin' 
+
 # gem 'unicorn'
 
 # Use Capistrano for deployment
