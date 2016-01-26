@@ -30,7 +30,7 @@ gem 'quiet_assets', group: :development
 gem 'thin' 
 
 # gem 'unicorn'
-
+gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
