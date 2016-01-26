@@ -31,6 +31,8 @@ gem 'thin'
 
 # gem 'unicorn'
 gem 'devise'
+
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

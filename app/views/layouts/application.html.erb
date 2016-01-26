@@ -2,13 +2,22 @@
 <html>
 <head>
   <title>Medicine</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
+
+
+<% if current_company %>
+    <%= current_company.email %>
+    <%= link_to 'Edit Profile', edit_company_registration_path %>
+    <%= link_to 'Logout', destroy_company_session_path, method: :delete %>
+<% else %>
+    <%= link_to 'Login', new_company_session_path %>
+<% end %>
 
 </body>
 </html>
