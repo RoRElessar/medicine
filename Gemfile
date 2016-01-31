@@ -31,6 +31,9 @@ gem 'thin'
 
 # gem 'unicorn'
 gem 'devise'
+gem 'activeadmin'
+
+gem 'formtastic', '~> 3.0'
 
 gem 'rmagick'
 gem 'carrierwave'
