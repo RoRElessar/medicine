@@ -8,17 +8,9 @@
 </head>
 <body>
 
+<%= render 'layouts/header' %>
+
 <%= yield %>
-
-
-<% if current_company %>
-    <%= current_company.email %>
-    <%= image_tag current_company.image, style: 'width: 45px; height: 45px' if current_company.image? %>
-    <%= link_to 'Edit Profile', edit_company_registration_path %>
-    <%= link_to 'Logout', destroy_company_session_path, method: :delete %>
-<% else %>
-    <%= link_to 'Login', new_company_session_path %>
-<% end %>
 
 </body>
 </html>
