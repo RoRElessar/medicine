@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'companies/index'
+  get 'company/:id' , to: 'companies#show' , as: 'company'
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'welcome/index'

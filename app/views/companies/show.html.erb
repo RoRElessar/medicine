@@ -1,0 +1,19 @@
+<h1>Companies#show</h1>
+<p>Find me in app/views/companies/show.html.erb</p>
+<tr>
+
+  <td> id <%= @company.id %></td>
+  <br>
+  <td><%= @company.name %></td>
+  <br>
+  <td><%= @company.email %></td>
+  <br>
+  <td><%= @company.address %></td>
+  <br>
+  <td><%= @company.phone %></td>
+  <br>
+  <td><%= @company.description %></td>
+  <br>
+  <%= image_tag @company.image, style: 'width: 500px; height: 500px' if @company.image? %>
+
+</tr>
