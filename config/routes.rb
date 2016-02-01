@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   get 'companies/index'
   get 'company/:id' , to: 'companies#show' , as: 'company'
   
