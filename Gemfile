@@ -34,7 +34,7 @@ gem 'devise'
 gem 'activeadmin'
 
 gem 'formtastic', '~> 3.0'
-
+gem 'font-awesome-sass', '~> 4.5.0'
 gem 'rmagick'
 gem 'carrierwave'
 

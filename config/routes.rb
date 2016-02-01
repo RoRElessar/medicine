@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'welcome/index'
-
+  get 'welcome/about'
+  get 'welcome/services'
+  get 'welcome/works'
   devise_for :companies
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

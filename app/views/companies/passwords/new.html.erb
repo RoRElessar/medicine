@@ -1,16 +1,56 @@
-<h2>Forgot your password?</h2>
+<!-- container -->
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+
+  <div class="row">
+
+    <!-- Article main content -->
+    <article class="col-xs-12 maincontent">
+      <header class="page-header">
+
+      </header>
+
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3 class="thin text-center">Forgot your password?</h3>
+            <p class="text-center text-muted">Тут інфа  <%= render "companies/shared/links" %> </p>
+            <hr>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= devise_error_messages! %>
+            <form>
+
+              <div class="top-margin">
+                <label>Email Address <span class="text-danger">*</span></label>
+                <%= f.email_field :email, autofocus: true , class: 'form-control' %>
+              </div>
+
+
+
+              <hr>
+
+              <div class="row">
+
+                <div class="thin text-center">
+                  <%= f.submit "Send me reset password instructions" , class: 'btn btn-danger' %>
+                </div>
+              </div>
+            </form>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+    </article>
+    <!-- /Article -->
+
   </div>
+</div>	<!-- /container -->
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
 
-<%= render "companies/shared/links" %>
+
+
+
+
