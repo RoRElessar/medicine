@@ -24,6 +24,32 @@ class DoctorsController < ApplicationController
     redirect_to root_path unless current_company.id == @doctor.company.id
   end
 
+  def login
+    if current_doctor
+      redirect_to current_doctor
+    elsif current_company || current_user
+      redirect_to root_path
+    end
+  end
+
+  def create_session
+    @doctor = Doctor.find_by(email: params[:email])
+    if @doctor
+      if @doctor.password == Digest::MD5.hexdigest(params[:password])
+        session[:doctor_id] = @doctor.id
+        flash[:notice]='You successful login'
+        redirect_to @doctor
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+  def logout
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def doctor_params

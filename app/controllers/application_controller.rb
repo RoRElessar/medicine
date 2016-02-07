@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  def current_doctor
+    current_doctor ||= Doctor.find(session[:doctor_id]) if session[:doctor_id]
+  end
+
   protected
 
   def configure_devise_permitted_parameters
