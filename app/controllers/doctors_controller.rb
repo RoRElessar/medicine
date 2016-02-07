@@ -31,7 +31,6 @@ class DoctorsController < ApplicationController
       redirect_to root_path
     end
   end
-
   def create_session
     @doctor = Doctor.find_by(email: params[:email])
     if @doctor
@@ -39,6 +38,8 @@ class DoctorsController < ApplicationController
         session[:doctor_id] = @doctor.id
         flash[:notice]='You successful login'
         redirect_to @doctor
+      else
+        redirect_to root_path
       end
     else
       redirect_to root_path
