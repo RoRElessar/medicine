@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :doctors, only: [:show, :index, :create, :update, :edit]
+
   devise_for :users
   get 'companies/index'
   get 'company/:id' , to: 'companies#show' , as: 'company'

@@ -4,5 +4,5 @@ class Company < ActiveRecord::Base
   mount_uploader :image, CompanyUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  has_many :doctors
 end
