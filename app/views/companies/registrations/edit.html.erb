@@ -87,16 +87,53 @@
     <div class="box">
       <div class="col-lg-12">
         <hr>
-        <h2 class="intro-text text-center">Our <strong>Team</strong> <button id="add-new" type="button" class="btn btn-success">Add new</button>
+        <h2 class="intro-text text-center">Our <strong>Team</strong> <button id="add-new" type="button" class="btn btn-success">Додати нового</button>
         </h2>
         <hr>
       </div>
       <div class="col-lg-12 add-new-doctor" >
         <%= form_for Doctor.new do |f| %>
-            <%= f.text_field :name %>
-            <%= f.text_field :email %>
-            <%= f.text_field :password %>
-            <%= f.submit %>
+            <form>
+              <div class="top-margin col-md-3">
+                <label>Імя <span class="text-danger">*</span></label>
+                <%= f.text_field :name , class: 'form-control' , autofocus: true %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>Фамилия <span class="text-danger">*</span></label>
+                <%= f.text_field :second_name , class: 'form-control' %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>отчес <span class="text-danger">*</span></label>
+                <%= f.text_field :surname , class: 'form-control' %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>категория<span class="text-danger">*</span></label>
+                <%= f.text_field :category , class: 'form-control' %>
+              </div>
+              <br>
+              <div class="top-margin col-md-3">
+                <label>специализация<span class="text-danger">*</span></label>
+                <%= f.text_field :specialization , class: 'form-control' %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>фото<span class="text-danger">*</span></label>
+                <%= f.text_field :photo , class: 'form-control' %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>email<span class="text-danger">*</span></label>
+                <%= f.text_field :email , class: 'form-control' %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>pass<span class="text-danger">*</span></label>
+                <%= f.text_field :password , class: 'form-control' %>
+              </div>
+
+
+              <div class="thin text-center">
+                <%= f.submit "Додати" , class: 'btn btn-success' %>
+              </div>
+
+            </form>
         <% end %>
 
         <div class="doctor-info">
@@ -135,10 +172,21 @@
                 $('#doctor_password').val('');
 
 
-                var newDoctor = "<div class='col-sm-4 text-center doctor-list-item'>" +
-                    "<img class='img-responsive' src='http://placehold.it/750x450'>" +
-                    "<h3>" +data.name + "<small>"+ "Proctolog" +"</small> </h3> </div>"
-                $('.doctor-list-item').last().after(newDoctor).html()
+
+
+
+                var newDoctor = "<div class='col-sm-12  doctor-list-item'>"+ "<div class='container-fluid well span6'>" +
+                    "<div class='row-fluid'>" + "<div class='col-md-3'>"+ "<img src='https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm' class='img-circle'>" +
+                    "</div>" +  "<div class='col-md-3'>" + "<h3>" + data.second_name + "</h3>"  + "<h6>" + data.name + "</h6>" +
+                     "<h6>" + data.surname + "</h6>" + "</div>" + "<div class='col-md-6'>"+ "<h6>" + "Лікар "+  data.category + " категорії"+  "</h6>"  + "<h6>" +"Спеціалізація "  + data.specialization + "</h6>" +
+                     "<h6>" +"Email " + data.email + "</h6>" + "</div>"  +  "<a href='/doctors/" + data.id + "/edit'  class='btn btn-info'>Редагувати</a>"+ "</div>" + "</div>" + "</div>";
+
+                if ($('.doctor-list-item').size > 0) {
+                  $('.doctor-list-item').last().after(newDoctor).html()
+                }
+                else {
+                  $('.box').last().append(newDoctor).html()
+                }
               });
           });
 
@@ -150,12 +198,28 @@
       </div>
 
       <% current_company.doctors.each do |doctor| %>
-          <div class="col-sm-4 text-center doctor-list-item">
-            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-            <h3><%= doctor.name %>
-              <small><%= 'Proctolog' %></small>
-            </h3>
-            <%= link_to 'edit doctor', edit_doctor_path(doctor) if current_company.id == doctor.company.id %>
+          <div class="col-sm-12  doctor-list-item">
+            <div class="container-fluid well span6">
+              <div class="row-fluid">
+                <div class="col-md-3" >
+                  <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+                </div>
+
+                <div class="col-md-3">
+                  <h3><%= doctor.second_name %></h3>
+                  <h6><%= doctor.name %></h6>
+                  <h6><%= doctor.surname %></h6>
+                </div>
+                <div class="col-md-6">
+                  <h6>Лікар <%= doctor.category %> категорії </h6>
+                  <h6>Спеціалізація  <%= doctor.specialization %> </h6>
+                  <h6>Email: <%= doctor.email %></h6>
+
+                </div>
+                  <%= link_to 'Редагувати', edit_doctor_path(doctor)  , class: 'btn btn-info'  %>
+              </div>
+              </div>
+
           </div>
       <% end %>
       <div class="clearfix"></div>
