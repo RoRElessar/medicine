@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= render 'layouts/header' %>
+<% unless controller.controller_name == 'doctors' %>
+  <%= render 'layouts/header' %>
+<% end %>
 
 <%= yield %>
 

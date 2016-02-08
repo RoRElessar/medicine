@@ -1,21 +1,30 @@
 Rails.application.routes.draw do
-
+  devise_for :companies
   devise_for :users
-  get 'companies/index'
-  get 'company/:id' , to: 'companies#show' , as: 'company'
-  
   devise_for :admin_users, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
+
+  resources :doctors, only: [:show, :index, :create, :update, :edit]
+
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/services'
   get 'welcome/works'
-  devise_for :companies
+
+  get 'companies/index'
+  get 'company/:id', to: 'companies#show', as: 'company'
+
+  root 'welcome#index'
+
+  get 'doc', to: 'doctors#login'
+  match 'doc/login', to: 'doctors#create_session', via: [:put, :patch, :get]
+  match 'doc/logout', to: 'doctors#logout', via: [:put, :patch, :get]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
