@@ -67,20 +67,30 @@
             </div>
           </div>
           <br>
-          <div class="row">
-            <div class="col-md-4"></div>
+          <div class="row col-md-12">
+            <div class="col-md-4"> </div>
             <div class="col-md-4">
               <div class="field">
                 <%= f.label :current_password %> <i>(Need to confirm changes)</i><br/>
                 <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
               </div>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4"> </div>
           </div>
-
           <br>
-          <div class="actions text-center">
-            <%= f.submit "Update", class: 'btn btn-warning' %>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="row col-md-12">
+            <div class="col-md-4"> </div>
+            <div class="col-md-4">
+          <div class="actions text-centers ">
+            <%= f.submit "Update", class: 'btn btn-warning btn-block' %>
+          </div>
+            </div>
+            <div class="col-md-4"> </div>
           </div>
 
   <% end %>
