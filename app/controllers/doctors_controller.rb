@@ -32,8 +32,12 @@ class DoctorsController < ApplicationController
 
 
   def edit
+    if  current_company
     @doctor = Doctor.find(params[:id])
     redirect_to root_path unless current_company.id == @doctor.company.id
+    else
+      redirect_to root_path
+      end
   end
 
   def login
