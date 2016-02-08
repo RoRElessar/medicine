@@ -1,19 +1,18 @@
-ActiveAdmin.register Company do
-  permit_params :name, :description, :email, :image, :address, :phone
-  menu label: 'Компании'
+ActiveAdmin.register User do
+  permit_params :name, :surname, :patronymic, :email, :phone, :address, :encrypted_password
+
+  menu label: 'Пользователи'
 
   index do
     selectable_column
     id_column
-    column 'Изображение' do |company|
-      image_tag company.image_url(:small) if company.image?
-    end
+    column 'Фамилия', :surname
+    column 'Имя', :name
+    column 'Отчество', :patronymic
     column :email
-    column 'Название', :name
-    column 'Адрес', :address
     column 'Телефон', :phone
-    column 'Описание', :description
-    column 'Создано', :created_at
+    column 'Адрес', :address
+    column 'Зарегистрирован', :created_at
     actions
   end
 # See permitted parameters documentation:
