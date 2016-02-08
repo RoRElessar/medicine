@@ -17,7 +17,19 @@ class DoctorsController < ApplicationController
   end
 
   def update
-  end
+    @doctor = Doctor.find(params[:id])
+
+      if  @doctor.update(doctor_params)
+       redirect_to  edit_company_registration_path
+      else
+        format.html { render action: "edit" }
+      end
+    end
+
+
+
+
+
 
   def edit
     @doctor = Doctor.find(params[:id])
@@ -54,7 +66,7 @@ class DoctorsController < ApplicationController
   private
 
   def doctor_params
-    params.require(:doctor).permit(:name, :second_name, :surname, :password, :email).merge(company_id: current_company.id)
+    params.require(:doctor).permit(:name, :second_name, :surname, :password, :email , :category, :specialization, :photo).merge(company_id: current_company.id)
   end
 end
 

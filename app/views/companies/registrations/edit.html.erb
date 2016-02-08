@@ -112,36 +112,36 @@
             <form>
               <div class="top-margin col-md-3">
                 <label>Імя <span class="text-danger">*</span></label>
-                <%= f.text_field :name , class: 'form-control' , autofocus: true %>
+                <%= f.text_field :name , class: 'form-control' , autofocus: true , required: true, placeholder: "Іван" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>Фамилия <span class="text-danger">*</span></label>
-                <%= f.text_field :second_name , class: 'form-control' %>
+                <%= f.text_field :second_name , class: 'form-control' , required: true, placeholder: "Іванов"  %>
               </div>
               <div class="top-margin col-md-3">
                 <label>отчес <span class="text-danger">*</span></label>
-                <%= f.text_field :surname , class: 'form-control' %>
+                <%= f.text_field :surname , class: 'form-control', required: true, placeholder: "Іванович"  %>
               </div>
               <div class="top-margin col-md-3">
                 <label>категория<span class="text-danger">*</span></label>
-                <%= f.text_field :category , class: 'form-control' %>
+                <%= f.text_field :category , class: 'form-control' , required: true, placeholder: "вищої"  %>
               </div>
               <br>
               <div class="top-margin col-md-3">
                 <label>специализация<span class="text-danger">*</span></label>
-                <%= f.text_field :specialization , class: 'form-control' %>
+                <%= f.text_field :specialization , class: 'form-control' , required: true, placeholder: "хірург"  %>
               </div>
               <div class="top-margin col-md-3">
                 <label>фото<span class="text-danger">*</span></label>
-                <%= f.text_field :photo , class: 'form-control' %>
+                <%= f.text_field :photo , class: 'form-control'   , required: true, placeholder: "фото" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>email<span class="text-danger">*</span></label>
-                <%= f.text_field :email , class: 'form-control' %>
+                <%= f.email_field :email , class: 'form-control' , required: true, placeholder: "Email" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>pass<span class="text-danger">*</span></label>
-                <%= f.text_field :password , class: 'form-control' %>
+                <%= f.text_field :password , class: 'form-control'  , required: true, placeholder: "password"%>
               </div>
 
 
