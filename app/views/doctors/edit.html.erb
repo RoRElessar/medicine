@@ -1,2 +1,57 @@
-<h1>Doctors#show</h1>
-<p>Find me in app/views/doctors/show.html.erb</p>
+<div id="blue">
+  <div class="container">
+    <div class="row centered">
+    </div><!-- row -->
+  </div><!-- container -->
+</div><!-- blue wrap -->
+<%= form_for(@doctor) do |f| %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 centered">
+          <div class="tilt">
+            <a href="#"><%= image_tag("p01.png") %></a>
+          </div>
+        </div><!-- col-lg-6 -->
+        <div class="col-lg-6">
+          <h4>Лікар</h4>
+          <h4>
+            <div class="field">
+              Прізвище<br>
+              <%= f.text_field :second_name, class: 'form-control' , required: true %>
+            </div>
+          </h4>
+          <div class="field">
+            Імя<br>
+            <%= f.text_field :name, class: 'form-control', required: true %>
+          </div>
+          <div class="field">
+            По батькові<br>
+            <%= f.text_field :surname, class: 'form-control', required: true %>
+          </div>
+          <p>
+            <i class="fa fa-circle-o"></i> Категорія <%= f.text_field :category, class: 'form-control' , required: true%>
+            <i class="fa fa-circle-o"></i> Спеціалізація <%= f.text_field :specialization, class: 'form-control', required: true %>
+            <i class="fa fa-circle-o"></i> Емайл <%= f.email_field :email, class: 'form-control', required: true %>
+            <i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
+          <div class="field">
+            <%= f.label :password %><br>
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+          </div>
+
+          </p>
+        </div>
+
+        <div class="actions text-center">
+          <%= f.submit 'Оновити', :class => 'btn btn-primary' %>
+
+        </div>
+      </div><!-- row -->
+    </div>
+
+
+
+
+
+<% end %>
+
+
