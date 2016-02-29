@@ -20,4 +20,176 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      company:
+        one: Компания
+        other: Компании
+      user:
+        one: Пользователь
+        other: Пользователи
+      comment:
+        one: Комментарий
+        other: Комментарии
+      admin_user:
+        one: Администратор
+        other: Администраторы
+    attributes:
+      user:
+        address: Адрес
+        phone: Телефон
+        name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        created_at: Создан
+      company:
+        image: Логотип
+        updated_at: Изменена
+        created_at: Создана
+        address: Адрес
+        phone: Телефон
+        description: Описание
+        name: Название
+      admin_user:
+        current_sign_in_at: Текущее время входа
+        sign_in_count: Количество входов
+        created_at: Создан
+      comment:
+        body: Текст комментария
+        author: Автор
+
+  active_admin:
+    dashboard: Админ-панель
+    dashboard_welcome:
+      welcome: "Добро пожаловать в Active Admin."
+      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboard.rb'"
+    view: "Просмотр"
+    edit: "Редактировать"
+    delete: "Удалить"
+    delete_confirmation: "Вы уверены что хотите произвести удаление?"
+    new_model: "Новый %{model}" #Не знаю как сделать что бы определяло род модели (мужской или женский)
+    edit_model: "Редактировать %{model}"
+    delete_model: "Удалить %{model}"
+    details: "%{model} Details"
+    cancel: "Отменить"
+    empty: "Empty"
+    previous: "Previous"
+    next: "Next"
+    download: "Загрузить:"
+    has_many_new: "Add New %{model}"
+    has_many_delete: "Удалить"
+    has_many_remove: "Переместить"
+    filters:
+      buttons:
+        filter: "Фильтр"
+        clear: "Очистить фильтры"
+      predicates:
+        contains: "Содержит"
+        equals: "Равно"
+        starts_with: "Начинается с"
+        ends_with: "Заканчивается на"
+        greater_than: "Больше чем"
+        less_than: "Меньше чем"
+    search_status:
+      headline: "Search status:"
+      current_scope: "Scope:"
+      current_filters: "Текущие фильтры:"
+      no_current_filters: "None"
+    status_tag:
+      "yes": "Yes"
+      "no": "No"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: "Выйти"
+    powered_by: "При поддержке %{active_admin} %{version}"
+    sidebars:
+      filters: "Фильтры"
+      search_status: "Статус поиска"
+    pagination:
+      empty: "%{model} не найден(а)"
+      one: "Отображен <b>1</b> %{model}"
+      one_page: "Отображены <b>все %{n}</b> %{model}"
+      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "entry"
+        other: "entries"
+    any: "Любые"
+    blank_slate:
+      content: "%{resource_name} пока отсутствуют."
+      link: "Create one"
+    dropdown_actions:
+      button_label: "Действия"
+    batch_actions:
+      button_label: "Batch Actions"
+      default_confirmation: "Are you sure you want to do this?"
+      delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
+      succesfully_destroyed:
+        one: "Successfully destroyed 1 %{model}"
+        other: "Successfully destroyed %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Create one"
+      action_label: "%{title} Selected"
+      labels:
+        destroy: "Удалить"
+    comments:
+      created_at: "Создан"
+      resource_type: "Resource Type"
+      author_type: "Author Type"
+      body: "Текст комментария"
+      author: "Автор"
+      title: "Комментарии"
+      add: "Добавить комментарий"
+      delete: "Удалить комментарий"
+      delete_confirmation: "Вы действительно хотите удалить комментарий?"
+      resource: "Resource"
+      no_comments_yet: "В данный момент комментарии отсутствуют."
+      author_missing: "Аноним"
+      title_content: "Комментарии (%{count})"
+      errors:
+        empty_text: "Комментарий не был сохранен, текст отсутствует."
+    devise:
+      username:
+        title: "Имя пользователя"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Поддомен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Регистрация"
+        submit: "Регистрация"
+      login:
+        title: "Войти"
+        remember_me: "Запомнить меня"
+        submit: "Войти"
+      reset_password:
+        title: "Забыли пароль?"
+        submit: "Сбросить пароль"
+      change_password:
+        title: "Изменить пароль?"
+        submit: "Изменить пароль"
+      unlock:
+        title: "Повторно выслать инструкции по разблокировке"
+        submit: "Повторно выслать инструкции по разблокировке"
+      resend_confirmation_instructions:
+        title: "Повторно выслать инструкции подтверждения"
+        submit: "Повторно выслать инструкции подтверждения"
+      links:
+        sign_up: "Регистрация"
+        sign_in: "Войти"
+        forgot_your_password: "Забыли пароль?"
+        sign_in_with_omniauth_provider: "Sign in with %{provider}"
+        resend_unlock_instructions: "Повторно выслать инструкции по сбросу"
+        resend_confirmation_instructions: "Повторно выслать инструкции подтверждения"
+    unsupported_browser:
+      headline: "Please note that ActiveAdmin no longer supports Internet Explorer versions 8 or less."
+      recommendation: "We recommend upgrading to the latest <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+    access_denied:
+      message: "У Вас нет разрешений на выполнение данного действия."
+    index_list:
+      table: "Table"
+      block: "List"
+      grid: "Grid"
+      blog: "Blog"
