@@ -14,7 +14,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
-        <li><%= link_to('ABOUT', welcome_about_path) %></li>
+        <li class="<%= current_page?(welcome_about_path) ? 'active' : '' %>"><%= link_to 'ABOUT', welcome_about_path  %></li>
         <li><%= link_to('SERVICES', welcome_services_path) %></li>
         <li><%= link_to('WORKS', welcome_works_path) %></li>
         <% if current_company %>
