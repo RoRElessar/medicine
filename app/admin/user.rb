@@ -43,8 +43,6 @@ ActiveAdmin.register User do
       f.input :patronymic
       f.input :phone
       f.input :address
-      f.input :password
-      f.input :password_confirmation
     end
     f.actions
   end

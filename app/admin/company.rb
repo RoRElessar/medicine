@@ -45,8 +45,6 @@ ActiveAdmin.register Company do
       f.input :phone
       f.input :address
       f.input :image
-      f.input :password
-      f.input :password_confirmation
     end
     f.actions
   end
