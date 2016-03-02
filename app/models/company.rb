@@ -11,4 +11,5 @@ class Company < ActiveRecord::Base
   validates :name, length: {in: 2..40}
   validates :description, length: {in: 100..500}
   validates :phone, numericality: true
+  validates :name, :phone, uniqueness: true
 end
