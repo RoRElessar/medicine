@@ -6,4 +6,8 @@ class CompaniesController < ApplicationController
   def show
    @company = Company.find(params[:id])
   end
+  def doctors
+  end
+  def schedule
+  end
 end
