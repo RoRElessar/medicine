@@ -19,36 +19,19 @@ class DoctorsController < ApplicationController
   def update
     @doctor = Doctor.find(params[:id])
 
-      if  @doctor.update(doctor_params)
-       redirect_to  edit_company_registration_path
-      else
-        format.html { render action: "edit" }
-      end
-    end
-
-  def destroy
-    @doctor = Doctor.find(params[:id])
-    if  current_company && current_company.id == @doctor.company.id
-      @doctor.destroy
-      respond_to do |format|
-        format.html { redirect_to company_doctors_path, notice: 'Doctor was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+    if @doctor.update(doctor_params)
+      redirect_to edit_company_registration_path
     else
-      format.html { redirect_to company_doctors_path, notice: 'unprocessable_entity'}
+      format.html { render action: "edit" }
     end
-  end
-
-
-
 
   def edit
-    if  current_company
-    @doctor = Doctor.find(params[:id])
-    redirect_to root_path unless current_company.id == @doctor.company.id
+    if current_company
+      @doctor = Doctor.find(params[:id])
+      redirect_to root_path unless current_company.id == @doctor.company.id
     else
       redirect_to root_path
-      end
+    end
   end
 
   def login
@@ -58,10 +41,11 @@ class DoctorsController < ApplicationController
       redirect_to root_path
     end
   end
+
   def create_session
     @doctor = Doctor.find_by(email: params[:email])
     if @doctor
-      if @doctor.password == Digest::MD5.hexdigest(params[:password])
+      if @doctor.authenticate(params[:password])
         session[:doctor_id] = @doctor.id
         flash[:notice]='You successful login'
         redirect_to @doctor
@@ -83,7 +67,7 @@ class DoctorsController < ApplicationController
   private
 
   def doctor_params
-    params.require(:doctor).permit(:name, :second_name, :surname, :password, :email , :category, :specialization, :photo).merge(company_id: current_company.id)
+    params.require(:doctor).permit(:name, :second_name, :surname, :password, :email, :category, :specialization, :photo).merge(company_id: current_company.id)
   end
 end
 
