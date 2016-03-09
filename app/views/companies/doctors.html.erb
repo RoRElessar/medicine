@@ -6,47 +6,45 @@
         <h2 class="intro-text text-right"><button id="add-new" type="button" class="btn btn-success">Додати нового</button>
         </h2>
       </div>
-<div class="col-lg-12 add-new-doctor" >
+      <div class="col-lg-12 add-new-doctor" >
         <%= form_for Doctor.new do |f| %>
-            <form>
-              <div class="top-margin col-md-3">
-                <label>Імя <span class="text-danger">*</span></label>
-                <%= f.text_field :name , class: 'form-control' , autofocus: true , required: true, placeholder: "Іван" %>
-              </div>
-              <div class="top-margin col-md-3">
-                <label>Фамилия <span class="text-danger">*</span></label>
-                <%= f.text_field :second_name , class: 'form-control' , required: true, placeholder: "Іванов"  %>
-              </div>
-              <div class="top-margin col-md-3">
-                <label>отчес <span class="text-danger">*</span></label>
-                <%= f.text_field :surname , class: 'form-control', required: true, placeholder: "Іванович"  %>
-              </div>
-              <div class="top-margin col-md-3">
-                <label>категория<span class="text-danger">*</span></label>
-                <%= f.text_field :category , class: 'form-control' , required: true, placeholder: "вищої"  %>
-              </div>
-              <br>
-              <div class="top-margin col-md-3">
-                <label>специализация<span class="text-danger">*</span></label>
-                <%= f.text_field :specialization , class: 'form-control' , required: true, placeholder: "хірург"  %>
-              </div>
-              <div class="top-margin col-md-3">
-                <label>фото<span class="text-danger">*</span></label>
-                <%= f.text_field :photo , class: 'form-control'   , required: true, placeholder: "фото" %>
-              </div>
-              <div class="top-margin col-md-3">
-                <label>email<span class="text-danger">*</span></label>
-                <%= f.email_field :email , class: 'form-control' , required: true, placeholder: "Email" %>
-              </div>
-              <div class="top-margin col-md-3">
-                <label>pass<span class="text-danger">*</span></label>
-                <%= f.text_field :password , class: 'form-control'  , required: true, placeholder: "password"%>
-              </div>
-
-
-              <div class="thin text-center">
-                <%= f.submit "Додати" , class: 'btn btn-success' %>
-              </div>
+          <form>
+            <div class="top-margin col-md-3">
+              <label>Імя <span class="text-danger">*</span></label>
+              <%= f.text_field :name , class: 'form-control' , autofocus: true , required: true, placeholder: "Іван" %>
+            </div>
+            <div class="top-margin col-md-3">
+              <label>Фамилия <span class="text-danger">*</span></label>
+              <%= f.text_field :second_name , class: 'form-control' , required: true, placeholder: "Іванов"  %>
+            </div>
+            <div class="top-margin col-md-3">
+              <label>отчес <span class="text-danger">*</span></label>
+              <%= f.text_field :surname , class: 'form-control', required: true, placeholder: "Іванович"  %>
+            </div>
+            <div class="top-margin col-md-3">
+              <label>категория<span class="text-danger">*</span></label>
+              <%= f.text_field :category , class: 'form-control' , required: true, placeholder: "вищої"  %>
+            </div>
+            <br>
+            <div class="top-margin col-md-3">
+              <label>специализация<span class="text-danger">*</span></label>
+              <%= f.text_field :specialization , class: 'form-control' , required: true, placeholder: "хірург"  %>
+            </div>
+            <div class="top-margin col-md-3">
+              <label>фото<span class="text-danger">*</span></label>
+              <%= f.text_field :photo , class: 'form-control'   , required: true, placeholder: "фото" %>
+            </div>
+            <div class="top-margin col-md-3">
+              <label>email<span class="text-danger">*</span></label>
+              <%= f.email_field :email , class: 'form-control' , required: true, placeholder: "Email" %>
+            </div>
+            <div class="top-margin col-md-3">
+              <label>pass<span class="text-danger">*</span></label>
+              <%= f.text_field :password , class: 'form-control'  , required: true, placeholder: "password"%>
+            </div>
+            <div class="thin text-center">
+              <%= f.submit "Додати" , class: 'btn btn-success' %>
+            </div>
 
             </form>
         <% end %>
@@ -86,10 +84,6 @@
                 $('#doctor_email').val('');
                 $('#doctor_password').val('');
 
-
-
-
-
                 var newDoctor = "<div class='col-sm-12  doctor-list-item'>"+ "<div class='container-fluid well span6'>" +
                     "<div class='row-fluid'>" + "<div class='col-md-3'>"+ "<img src='https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm' class='img-circle'>" +
                     "</div>" +  "<div class='col-md-3'>" + "<h3>" + data.second_name + "</h3>"  + "<h6>" + data.name + "</h6>" +
@@ -111,6 +105,39 @@
           })
         </script>
       </div>
+      <% current_company.doctors.each do |doctor| %>
+        <div class="col-sm-12  doctor-list-item">
+          <div class="container-fluid well span6">
+            <div class="row-fluid">
+              <div class="col-md-2" >
+                <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+              </div>
+
+              <div class="col-md-3">
+                <h3><%= doctor.surname %></h3>
+                <h3><%= doctor.name %></h3>
+                <h3><%= doctor.second_name %></h3>
+              </div>
+              <div class="col-md-5">
+                <h4>Лікар <%= doctor.category %> категорії </h4>
+                <h4>Спеціалізація  <%= doctor.specialization %> </h4>
+                <h4>Email: <%= doctor.email %></h4>
+
+              </div>
+              <div class="col-md-2">
+                <%= link_to 'Редагувати', edit_doctor_path(doctor), class: 'btn btn-info' %>
+                <%= link_to 'Destroy', doctor, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Розклад', edit_doctor_path(doctor), class: 'btn btn-info' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!--
   <table class="table table-bordered">
     <tbody>
       <tr>
@@ -125,4 +152,4 @@
       <% end %>
     </tbody>
 </table>
-</div>
+-->
