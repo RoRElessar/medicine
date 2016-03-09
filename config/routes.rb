@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  resources :doctors, only: [:show, :index, :create, :update, :edit]
+  resources :doctors, only: [:show, :index, :create, :update, :edit, :destroy]
 
   get 'welcome/index'
   get 'welcome/about'
