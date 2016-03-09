@@ -15,4 +15,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
-
+$(document).ready(function () {
+    $('.alert').delay(3000).fadeOut();
+});
