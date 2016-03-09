@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'welcome/works'
 
   get 'companies/index'
+  get 'company/doctors', to: 'companies#doctors'
+  get 'company/schedule', to: 'companies#schedule'
   get 'company/:id', to: 'companies#show', as: 'company'
 
   root 'welcome#index'

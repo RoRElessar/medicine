@@ -13,6 +13,7 @@
 /log/*
 !/log/.keep
 /tmp
+/public/uploads
 
 config/database.yml
 db/schema.rb

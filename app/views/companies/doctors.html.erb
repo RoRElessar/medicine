@@ -1,0 +1,16 @@
+<div class="container">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>ПІБ</td>
+        <td>Дія</td>
+      </tr>
+      <% current_company.doctors.each do |doctor| %> 
+        <tr>
+          <td><%= doctor.name %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+</div>
