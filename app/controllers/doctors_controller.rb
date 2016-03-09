@@ -24,6 +24,7 @@ class DoctorsController < ApplicationController
     else
       format.html { render action: "edit" }
     end
+  end
 
   def edit
     if current_company
@@ -62,6 +63,18 @@ class DoctorsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @doctor = Doctor.find(params[:id])
+    if current_company && current_company.id == @doctor.company.id
+      @doctor.destroy
+      respond_to do |format|
+        format.html { redirect_to company_doctors_path, notice: 'Doctor was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      format.html { redirect_to company_doctors_path, notice: 'unprocessable_entity' }
+    end
+  end 
 
 
   private
