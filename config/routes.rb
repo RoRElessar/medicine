@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  resources :doctors, only: [:show, :index, :create, :update, :edit, :destroy]
+  resources :doctors, only: [:show, :index, :create, :update, :edit, :destroy] do
+    get 'send_password', to: 'doctors#send_password', on: :collection
+  end
 
   get 'welcome/index'
   get 'welcome/about'

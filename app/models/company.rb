@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
 
   has_many :doctors
 
-  validates_presence_of :name, :phone, :address, :description, :image
+  validates_presence_of :name, :phone, :address, :description, :image, :activity
   validates :name, length: {in: 2..40}
   validates :description, length: {in: 100..500}
   validates :phone, numericality: true

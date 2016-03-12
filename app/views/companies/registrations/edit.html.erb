@@ -38,8 +38,8 @@
             <p>
             <div>
               <%= f.label :image %>
-              <%= f.file_field :image  %>
-             
+              <%= f.file_field :image %>
+
             </div>
             </p>
           </div>
@@ -50,8 +50,8 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <iframe  width=100% height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                   src = "https://maps.google.com/maps?q=<%= @company.lat %>,<%= @company.lng %>&hl=es;z=14&amp;output=embed"></iframe>
+          <iframe width=100% height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                  src="https://maps.google.com/maps?q=<%= @company.lat %>,<%= @company.lng %>&hl=es;z=14&amp;output=embed"></iframe>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -70,14 +70,14 @@
           </div>
           <br>
           <div class="row col-md-12">
-            <div class="col-md-4"> </div>
+            <div class="col-md-4"></div>
             <div class="col-md-4">
               <div class="field">
                 <%= f.label :current_password %> <i>(Need to confirm changes)</i><br/>
                 <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
               </div>
             </div>
-            <div class="col-md-4"> </div>
+            <div class="col-md-4"></div>
           </div>
           <br>
           <br>
@@ -86,13 +86,13 @@
           <br>
           <br>
           <div class="row col-md-12">
-            <div class="col-md-4"> </div>
+            <div class="col-md-4"></div>
             <div class="col-md-4">
-          <div class="actions text-centers ">
-            <%= f.submit "Update", class: 'btn btn-warning btn-block' %>
-          </div>
+              <div class="actions text-centers ">
+                <%= f.submit "Update", class: 'btn btn-warning btn-block' %>
+              </div>
             </div>
-            <div class="col-md-4"> </div>
+            <div class="col-md-4"></div>
           </div>
 
   <% end %>
@@ -105,122 +105,62 @@
     <div class="box">
       <div class="col-lg-12">
         <hr>
-        <h2 class="intro-text text-center">Our <strong>Team</strong> <button id="add-new" type="button" class="btn btn-success">Додати нового</button>
+        <h2 class="intro-text text-center">Our <strong>Team</strong>
         </h2>
         <hr>
       </div>
-      <div class="col-lg-12 add-new-doctor" >
+      <div class="col-lg-12 add-new-doctor">
         <%= form_for Doctor.new do |f| %>
             <form>
               <div class="top-margin col-md-3">
                 <label>Імя <span class="text-danger">*</span></label>
-                <%= f.text_field :name , class: 'form-control' , autofocus: true , required: true, placeholder: "Іван" %>
+                <%= f.text_field :name, class: 'form-control', autofocus: true, required: true, placeholder: "Іван" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>Фамилия <span class="text-danger">*</span></label>
-                <%= f.text_field :second_name , class: 'form-control' , required: true, placeholder: "Іванов"  %>
+                <%= f.text_field :second_name, class: 'form-control', required: true, placeholder: "Іванов" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>отчес <span class="text-danger">*</span></label>
-                <%= f.text_field :surname , class: 'form-control', required: true, placeholder: "Іванович"  %>
+                <%= f.text_field :surname, class: 'form-control', required: true, placeholder: "Іванович" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>категория<span class="text-danger">*</span></label>
-                <%= f.text_field :category , class: 'form-control' , required: true, placeholder: "вищої"  %>
+                <%= f.text_field :category, class: 'form-control', required: true, placeholder: "вищої" %>
               </div>
               <br>
               <div class="top-margin col-md-3">
                 <label>специализация<span class="text-danger">*</span></label>
-                <%= f.text_field :specialization , class: 'form-control' , required: true, placeholder: "хірург"  %>
+                <%= f.text_field :specialization, class: 'form-control', required: true, placeholder: "хірург" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>фото<span class="text-danger">*</span></label>
-                <%= f.text_field :photo , class: 'form-control'   , required: true, placeholder: "фото" %>
+                <%= f.text_field :photo, class: 'form-control', required: true, placeholder: "фото" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>email<span class="text-danger">*</span></label>
-                <%= f.email_field :email , class: 'form-control' , required: true, placeholder: "Email" %>
+                <%= f.email_field :email, class: 'form-control', required: true, placeholder: "Email" %>
               </div>
               <div class="top-margin col-md-3">
                 <label>pass<span class="text-danger">*</span></label>
-                <%= f.text_field :password , class: 'form-control'  , required: true, placeholder: "password"%>
+                <%= f.text_field :password, class: 'form-control', required: true, placeholder: "password" %>
               </div>
 
 
               <div class="thin text-center">
-                <%= f.submit "Додати" , class: 'btn btn-success' %>
+                <%= f.submit "Додати", class: 'btn btn-success' %>
               </div>
 
             </form>
         <% end %>
-
-        <div class="doctor-info">
-          <p id="name"></p>
-          <p id="second_name"></p>
-          <p id="surname"></p>
-          <p id="email"></p>
-          <p id="password"></p>
-        </div>
-
-        <script>
-          $(document).ready(function () {
-            $('#add-new').click(function () {
-              $('.add-new-doctor').show()
-              $('#doctor_name').focus()
-            })
-          })
-
-          $('doctor-info').hide();
-
-          $('#new_doctor').submit(function (evt) {
-            console.log($(this).serialize())
-            data = $(this).serialize()
-            evt.preventDefault();
-            $.post( "/doctors", data, 'application/json')
-              .done(function( data ) {
-                console.log(data);
-
-                $('#name').text('name: ' + $('#doctor_name').val());
-                $('#email').text('email: ' + $('#doctor_email').val());
-                $('#password').text('password: '+$('#doctor_password').val());
-
-                $('doctor-info').show();
-                $('#doctor_name').val('');
-                $('#doctor_email').val('');
-                $('#doctor_password').val('');
-
-
-
-
-
-                var newDoctor = "<div class='col-sm-12  doctor-list-item'>"+ "<div class='container-fluid well span6'>" +
-                    "<div class='row-fluid'>" + "<div class='col-md-3'>"+ "<img src='https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm' class='img-circle'>" +
-                    "</div>" +  "<div class='col-md-3'>" + "<h3>" + data.second_name + "</h3>"  + "<h6>" + data.name + "</h6>" +
-                     "<h6>" + data.surname + "</h6>" + "</div>" + "<div class='col-md-6'>"+ "<h6>" + "Лікар "+  data.category + " категорії"+  "</h6>"  + "<h6>" +"Спеціалізація "  + data.specialization + "</h6>" +
-                     "<h6>" +"Email " + data.email + "</h6>" + "</div>"  +  "<a href='/doctors/" + data.id + "/edit'  class='btn btn-info'>Редагувати</a>"+ "</div>" + "</div>" + "</div>";
-
-                if ($('.doctor-list-item').size > 0) {
-                  $('.doctor-list-item').last().after(newDoctor).html()
-                }
-                else {
-                  $('.box').last().append(newDoctor).html()
-                }
-              });
-          });
-
-          $('#doctor_password').click(function(){
-            var randomstring = Math.random().toString(36).slice(-8);
-            $(this).val(randomstring);
-          })
-        </script>
       </div>
 
       <% current_company.doctors.each do |doctor| %>
           <div class="col-sm-12  doctor-list-item">
             <div class="container-fluid well span6">
               <div class="row-fluid">
-                <div class="col-md-3" >
-                  <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+                <div class="col-md-3">
+                  <%= image_tag(doctor.photo.url(:medium), class: 'img-circle') %>
                 </div>
 
                 <div class="col-md-3">
@@ -234,9 +174,9 @@
                   <h6>Email: <%= doctor.email %></h6>
 
                 </div>
-                  <%= link_to 'Редагувати', edit_doctor_path(doctor)  , class: 'btn btn-info'  %>
+                <%= link_to 'Редагувати', edit_doctor_path(doctor), class: 'btn btn-info' %>
               </div>
-              </div>
+            </div>
 
           </div>
       <% end %>

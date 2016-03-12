@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
     if @doctor.save
       respond_to do |format|
         format.json { render json: @doctor }
-        # format.html
+        format.html { redirect_to :back }
       end
     end
   end
@@ -74,8 +74,16 @@ class DoctorsController < ApplicationController
     else
       format.html { redirect_to company_doctors_path, notice: 'unprocessable_entity' }
     end
-  end 
+  end
 
+  def send_password
+    password = params[:password]
+    email = params[:email]
+    DoctorMailer.new_doctor_notification(email, password).deliver_now
+    DoctorMailer.company_notification(email, password, current_company.email).deliver_now
+
+    render layout: false
+  end
 
   private
 

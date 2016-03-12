@@ -3,48 +3,50 @@
     <div class="box">
       <div class="col-lg-12">
         <h1>Список лікарів</h1>
-        <h2 class="intro-text text-right"><button id="add-new" type="button" class="btn btn-success">Додати нового</button>
+        <h2 class="intro-text text-right">
+          <button id="add-new" type="button" class="btn btn-success">Додати нового</button>
         </h2>
       </div>
-      <div class="col-lg-12 add-new-doctor" >
+      <div class="col-lg-12 add-new-doctor">
         <%= form_for Doctor.new do |f| %>
-          <form>
-            <div class="top-margin col-md-3">
-              <label>Імя <span class="text-danger">*</span></label>
-              <%= f.text_field :name , class: 'form-control' , autofocus: true , required: true, placeholder: "Іван" %>
-            </div>
-            <div class="top-margin col-md-3">
-              <label>Фамилия <span class="text-danger">*</span></label>
-              <%= f.text_field :second_name , class: 'form-control' , required: true, placeholder: "Іванов"  %>
-            </div>
-            <div class="top-margin col-md-3">
-              <label>отчес <span class="text-danger">*</span></label>
-              <%= f.text_field :surname , class: 'form-control', required: true, placeholder: "Іванович"  %>
-            </div>
-            <div class="top-margin col-md-3">
-              <label>категория<span class="text-danger">*</span></label>
-              <%= f.text_field :category , class: 'form-control' , required: true, placeholder: "вищої"  %>
-            </div>
-            <br>
-            <div class="top-margin col-md-3">
-              <label>специализация<span class="text-danger">*</span></label>
-              <%= f.text_field :specialization , class: 'form-control' , required: true, placeholder: "хірург"  %>
-            </div>
-            <div class="top-margin col-md-3">
-              <label>фото<span class="text-danger">*</span></label>
-              <%= f.text_field :photo , class: 'form-control'   , required: true, placeholder: "фото" %>
-            </div>
-            <div class="top-margin col-md-3">
-              <label>email<span class="text-danger">*</span></label>
-              <%= f.email_field :email , class: 'form-control' , required: true, placeholder: "Email" %>
-            </div>
-            <div class="top-margin col-md-3">
-              <label>pass<span class="text-danger">*</span></label>
-              <%= f.text_field :password , class: 'form-control'  , required: true, placeholder: "password"%>
-            </div>
-            <div class="thin text-center">
-              <%= f.submit "Додати" , class: 'btn btn-success' %>
-            </div>
+            <form>
+              <div class="top-margin col-md-3">
+                <label>Імя <span class="text-danger">*</span></label>
+                <%= f.text_field :name, class: 'form-control', autofocus: true, required: true, placeholder: "Іван" %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>Фамилия <span class="text-danger">*</span></label>
+                <%= f.text_field :second_name, class: 'form-control', required: true, placeholder: "Іванов" %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>отчес <span class="text-danger">*</span></label>
+                <%= f.text_field :surname, class: 'form-control', required: true, placeholder: "Іванович" %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>категория<span class="text-danger">*</span></label>
+                <%= f.text_field :category, class: 'form-control', required: true, placeholder: "вищої" %>
+              </div>
+              <br>
+              <div class="top-margin col-md-3">
+                <label>специализация<span class="text-danger">*</span></label>
+                <%= f.text_field :specialization, class: 'form-control', required: true, placeholder: "хірург" %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>фото<span class="text-danger">*</span></label>
+                <%= f.file_field :photo, class: 'form-control', required: true, placeholder: "фото" %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>email<span class="text-danger">*</span></label>
+                <%= f.email_field :email, class: 'form-control', required: true, placeholder: "Email" %>
+              </div>
+              <div class="top-margin col-md-3">
+                <label>pass<span class="text-danger">*</span></label>
+                <%= f.text_field :password, class: 'form-control', required: true, placeholder: "password" %>
+              </div>
+              &nbsp;
+              <div class="thin text-center">
+                <%= f.submit "Додати", class: 'btn btn-success' %>
+              </div>
 
             </form>
         <% end %>
@@ -56,100 +58,57 @@
           <p id="email"></p>
           <p id="password"></p>
         </div>
-
-        <script>
-          $(document).ready(function () {
-            $('#add-new').click(function () {
-              $('.add-new-doctor').show()
-              $('#doctor_name').focus()
-            })
-          })
-
-          $('doctor-info').hide();
-
-          $('#new_doctor').submit(function (evt) {
-            console.log($(this).serialize())
-            data = $(this).serialize()
-            evt.preventDefault();
-            $.post( "/doctors", data, 'application/json')
-              .done(function( data ) {
-                console.log(data);
-
-                $('#name').text('name: ' + $('#doctor_name').val());
-                $('#email').text('email: ' + $('#doctor_email').val());
-                $('#password').text('password: '+$('#doctor_password').val());
-
-                $('doctor-info').show();
-                $('#doctor_name').val('');
-                $('#doctor_email').val('');
-                $('#doctor_password').val('');
-
-                var newDoctor = "<div class='col-sm-12  doctor-list-item'>"+ "<div class='container-fluid well span6'>" +
-                    "<div class='row-fluid'>" + "<div class='col-md-3'>"+ "<img src='https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm' class='img-circle'>" +
-                    "</div>" +  "<div class='col-md-3'>" + "<h3>" + data.second_name + "</h3>"  + "<h6>" + data.name + "</h6>" +
-                     "<h6>" + data.surname + "</h6>" + "</div>" + "<div class='col-md-6'>"+ "<h6>" + "Лікар "+  data.category + " категорії"+  "</h6>"  + "<h6>" +"Спеціалізація "  + data.specialization + "</h6>" +
-                     "<h6>" +"Email " + data.email + "</h6>" + "</div>"  +  "<a href='/doctors/" + data.id + "/edit'  class='btn btn-info'>Редагувати</a>"+ "</div>" + "</div>" + "</div>";
-
-                if ($('.doctor-list-item').size > 0) {
-                  $('.doctor-list-item').last().after(newDoctor).html()
-                }
-                else {
-                  $('.box').last().append(newDoctor).html()
-                }
-              });
-          });
-
-          $('#doctor_password').click(function(){
-            var randomstring = Math.random().toString(36).slice(-8);
-            $(this).val(randomstring);
-          })
-        </script>
       </div>
+
       <% current_company.doctors.each do |doctor| %>
-        <div class="col-sm-12  doctor-list-item">
-          <div class="container-fluid well span6">
-            <div class="row-fluid">
-              <div class="col-md-2" >
-                <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
-              </div>
+          <div class="col-sm-12  doctor-list-item">
+            <div class="container-fluid well span6">
+              <div class="row-fluid">
+                <div class="col-md-2">
+                  <%= image_tag(doctor.photo.url(:medium), class: 'img-circle') %>
+                </div>
 
-              <div class="col-md-3">
-                <h3><%= doctor.surname %></h3>
-                <h3><%= doctor.name %></h3>
-                <h3><%= doctor.second_name %></h3>
-              </div>
-              <div class="col-md-5">
-                <h4>Лікар <%= doctor.category %> категорії </h4>
-                <h4>Спеціалізація  <%= doctor.specialization %> </h4>
-                <h4>Email: <%= doctor.email %></h4>
+                <div class="col-md-3">
+                  <h3><%= doctor.surname %></h3>
+                  <h3><%= doctor.name %></h3>
+                  <h3><%= doctor.second_name %></h3>
+                </div>
+                <div class="col-md-5">
+                  <h4>Лікар <%= doctor.category %> категорії </h4>
+                  <h4>Спеціалізація  <%= doctor.specialization %> </h4>
+                  <h4>Email: <%= doctor.email %></h4>
 
-              </div>
-              <div class="col-md-2">
-                <%= link_to 'Редагувати', edit_doctor_path(doctor), class: 'btn btn-info' %>
-                <%= link_to 'Destroy', doctor, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-                <%= link_to 'Розклад', edit_doctor_path(doctor), class: 'btn btn-info' %>
+                </div>
+                <div class="col-md-2">
+                  <%= link_to 'Редагувати', edit_doctor_path(doctor), class: 'btn btn-info' %>
+                  <%= link_to 'Destroy', doctor, class: "btn btn-small btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <%= link_to 'Розклад', edit_doctor_path(doctor), class: 'btn btn-info' %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
       <% end %>
+
     </div>
   </div>
 </div>
 
-<!--
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <td>ПІБ</td>
-        <td>Дія</td>
-      </tr>
-      <% current_company.doctors.each do |doctor| %> 
-        <tr>
-          <td><%= doctor.surname + ' ' + doctor.name + ' ' + doctor.second_name %></td>
-          <td><%= link_to 'Edit', edit_doctor_path(doctor), class: "btn btn-info" %><%= link_to 'Destroy', doctor, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-</table>
--->
+<script>
+  $(document).ready(function () {
+    $('#add-new').click(function () {
+      $('.add-new-doctor').show()
+      $('#doctor_name').focus()
+    })
+  });
+  $('doctor-info').hide();
+  $('#doctor_password').click(function () {
+    var randomstring = Math.random().toString(36).slice(-8);
+    $(this).val(randomstring);
+  });
+
+  $('#new_doctor').submit(function (evt) {
+    email = $('#doctor_email').val();
+    password = $('#doctor_password').val();
+    $.get( "/doctors/send_password", { email: email, password: password }, 'application/json');
+  });
+</script>

@@ -1,5 +1,6 @@
 class Doctor < ActiveRecord::Base
   has_secure_password
+  mount_uploader :photo, DoctorUploader
 
   belongs_to :company
 
