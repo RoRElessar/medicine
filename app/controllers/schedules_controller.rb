@@ -18,8 +18,15 @@ class SchedulesController < ApplicationController
 
   def create
     if current_company
-      @doctor = Doctor.find(params[:doctor_id])
       @schedule = Schedule.new(schedule_params)
+=begin
+      if params[:doctor_id]
+        @schedule.doctor_id = params[:doctor_id]
+      end
+=end
+
+    #  @doctor = Doctor.find(params[:doctor_id])
+
 
       respond_to do |format|
         if @schedule.save
@@ -63,7 +70,7 @@ class SchedulesController < ApplicationController
     params.require(:schedule).permit( :interval, :sunday_start_time, :sunday_finish_time, :monday_start_time, :monday_finish_time,
                                       :tuesday_start_time, :tuesday_finish_time, :wednesday_start_time, :wednesday_finish_time,
                                       :thursday_start_time, :thursday_finish_time, :friday_start_time, :friday_finish_time,
-                                      :saturday_start_time, :saturday_finish_time)
+                                      :saturday_start_time, :saturday_finish_time, :doctor_id)
   end
 
 end

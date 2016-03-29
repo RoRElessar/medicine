@@ -1,3 +1,5 @@
+
+
 <%= form_for @schedule do |f| %>
 
 
@@ -11,6 +13,13 @@
         <th>фініш</th>
       </tr>
       </thead>
+
+
+      <tr>
+        <td>
+          <%= f.text_field :doctor_id, class: 'hidden', id: 'url' %>
+        </td>
+      </tr>
 
       <tr>
         <th>Monday</th>
@@ -73,3 +82,12 @@
     </table> <br>
     <%= f.submit 'Подтвердить', class: 'btn btn-default' %>
 <% end %>
+
+<script>
+  $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+  }
+
+  $('#url').val(decodeURIComponent($.urlParam('doctor_id')));
+</script>
