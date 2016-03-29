@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   match 'doc/login', to: 'doctors#create_session', via: [:put, :patch, :get]
   match 'doc/logout', to: 'doctors#logout', via: [:put, :patch, :get]
 
+  resources :schedules
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

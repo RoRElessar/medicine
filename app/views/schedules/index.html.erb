@@ -1,0 +1,47 @@
+<h1>Schedules</h1>
+<div class="container">
+<table class="table table-bordered">
+  <tr>
+    <th>day</th>
+    <th>time_start</th>
+    <th>time_finish</th>
+  </tr>
+  <% @schedule.each do |schedule| %>
+  <tr>
+    <td>Понеділок</td>
+    <td><%= schedule.monday_start_time.strftime("%H - %M") %></td>
+    <td><%= schedule.monday_finish_time.strftime("%H - %M") %></td>
+  </tr>
+      <tr>
+        <td>Вівторок</td>
+        <td><%= schedule.tuesday_start_time.strftime("%H - %M") %></td>
+        <td><%= schedule.tuesday_finish_time.strftime("%H - %M") %></td>
+      </tr>
+      <tr>
+        <td>Cpeda</td>
+        <td><%= schedule.wednesday_start_time.strftime("%H - %M") %></td>
+        <td><%= schedule.wednesday_finish_time.strftime("%H - %M") %></td>
+      </tr>
+      <tr>
+        <td>4etBer</td>
+        <td><%= schedule.thursday_start_time.strftime("%H - %M") %></td>
+        <td><%= schedule.thursday_finish_time.strftime("%H - %M") %></td>
+      </tr>
+      <tr>
+        <td>JI9THuu,a</td>
+        <td><%= schedule.friday_start_time.strftime("%H - %M") %></td>
+        <td><%= schedule.friday_finish_time.strftime("%H - %M") %></td>
+      </tr>
+      <tr>
+        <td>Cy6ota</td>
+        <td><%= schedule.saturday_start_time.strftime("%H - %M") %></td>
+        <td><%= schedule.saturday_finish_time.strftime("%H - %M") %></td>
+      </tr>
+      <tr>
+        <td>Hedila</td>
+        <td><%= schedule.sunday_start_time.strftime("%H - %M") %></td>
+        <td><%= schedule.sunday_finish_time.strftime("%H - %M") %></td>
+      </tr>
+      </table>
+      </div>
+  <% end %>

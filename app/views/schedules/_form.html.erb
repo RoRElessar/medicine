@@ -1,0 +1,75 @@
+<%= form_for @schedule do |f| %>
+
+
+    <div class="container">
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>день</th>
+        <th>старт </th>
+        <th>фініш</th>
+      </tr>
+      </thead>
+
+      <tr>
+        <th>Monday</th>
+        <th><%= f.label :monday_start_time %> <br>
+          <%= f.time_select :monday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :monday_finish_time %> <br>
+          <%= f.time_select :monday_finish_time, minute_step: 30 %></th>
+      </tr>
+      <tr>
+        <th>Tuesday</th>
+        <th><%= f.label :tuesday_start_time %> <br>
+          <%= f.time_select :tuesday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :tuesday_finish_time %> <br>
+          <%= f.time_select :tuesday_finish_time, minute_step: 30 %></th>
+      </tr>
+      <tr>
+        <th>Wednesday</th>
+        <th><%= f.label :wednesday_start_time %> <br>
+          <%= f.time_select :wednesday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :wednesday_finish_time %> <br>
+          <%= f.time_select :wednesday_finish_time, minute_step: 30 %></th>
+      </tr>
+      <tr>
+        <th>thursady</th>
+        <th><%= f.label :thursday_start_time %> <br>
+          <%= f.time_select :thursday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :thursday_finish_time %> <br>
+          <%= f.time_select :thursday_finish_time, minute_step: 30 %></th>
+      </tr>
+      <tr>
+        <th>Friday</th>
+        <th><%= f.label :friday_start_time %> <br>
+          <%= f.time_select :friday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :friday_finish_time %> <br>
+          <%= f.time_select :friday_finish_time, minute_step: 30 %></th>
+      </tr>
+      <tr>
+        <th>Saturday</th>
+        <th><%= f.label :saturday_start_time %> <br>
+          <%= f.time_select :saturday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :saturday_finish_time %> <br>
+          <%= f.time_select :saturday_finish_time, minute_step: 30 %></th>
+      </tr>
+      <tr>
+        <th>Sunday</th>
+        <th><%= f.label :sunday_start_time %> <br>
+          <%= f.time_select :sunday_start_time, minute_step: 30 %></th>
+        <th><%= f.label :sunday_finish_time %> <br>
+          <%= f.time_select :sunday_finish_time, minute_step: 30 %></th>
+      </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+    </table> <br>
+    <%= f.submit 'Подтвердить', class: 'btn btn-default' %>
+<% end %>
