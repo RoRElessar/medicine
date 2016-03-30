@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctor_id: 1
+  days: MyString
+  time_start: 2016-03-14 11:09:03
+  time_finish: 2016-03-14 11:09:03
+  interval: 1
+
+two:
+  doctor_id: 1
+  days: MyString
+  time_start: 2016-03-14 11:09:03
+  time_finish: 2016-03-14 11:09:03
+  interval: 1

@@ -3,6 +3,7 @@ class Doctor < ActiveRecord::Base
   mount_uploader :photo, DoctorUploader
 
   belongs_to :company
+  has_one :schedule
 
   validates_presence_of :name, :surname, :second_name, :specialization, :photo, :email
   validates :name, :surname, :second_name, length: {in: 2..20}

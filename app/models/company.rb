@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :doctors
+  has_many :schedules
 
   validates_presence_of :name, :phone, :address, :description, :image, :activity
   validates :name, length: {in: 2..40}

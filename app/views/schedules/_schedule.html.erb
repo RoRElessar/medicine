@@ -1,0 +1,35 @@
+
+
+<div class="container">
+
+
+  <div class="container">
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>День</th>
+        <th>Початок роботи</th>
+        <th>Кінець роботи</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <% Date::DAYNAMES.rotate(1).each do |weekday| %>
+        <tr class="success">
+          <th><%= weekday %> </th>
+          <% if schedule.send(weekday.downcase+'_start_time').strftime("%H - %M") == "00 - 00"   %>
+            <td colspan="2" class="warning centered">Вихідний</td>
+          <% else %>
+            <td><%= schedule.send(weekday.downcase+'_start_time').strftime("%H - %M") %></td>
+            <td><%= schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %></td>
+          <% end %>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
