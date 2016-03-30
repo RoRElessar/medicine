@@ -1,0 +1,96 @@
+
+
+<%= form_for @schedule do |f| %>
+
+
+    <div class="container">
+
+
+      <div class="container">
+
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>День</th>
+            <th>Початок роботи</th>
+            <th>Кінець роботи</th>
+          </tr>
+          </thead>
+          <%= f.text_field :doctor_id, class: 'hidden', id: 'url' %>
+          <tbody>
+          <tr class="success">
+            <th>Monday</th>
+            <th>
+              <%= f.time_select :monday_start_time, minute_step: 30   , :default => {:hour => '00', :minute => '00'} %></th>
+            <th>
+              <%= f.time_select :monday_finish_time, minute_step: 30  , :default => {:hour => '00', :minute => '00'} %></th>
+          </tr>
+          <tr class="danger">
+            <th>Tuesday</th>
+            <th>
+              <%= f.time_select :tuesday_start_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+            <th>
+              <%= f.time_select :tuesday_finish_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+          </tr>
+          <tr class="success">
+            <th>Wednesday</th>
+            <th>
+              <%= f.time_select :wednesday_start_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+            <th>
+              <%= f.time_select :wednesday_finish_time, minute_step: 30  , :default => {:hour => '00', :minute => '00'}  %></th>
+          </tr>
+
+          <tr class="danger">
+            <th>Thursady</th>
+            <th>
+              <%= f.time_select :thursday_start_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+            <th>
+              <%= f.time_select :thursday_finish_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+          </tr>
+
+          <tr class="success">
+            <th>Friday</th>
+            <th>
+              <%= f.time_select :friday_start_time, minute_step: 30  , :default => {:hour => '00', :minute => '00'} %></th>
+            <th>
+              <%= f.time_select :friday_finish_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+          </tr>
+
+          <tr class="danger">
+            <th>Saturday</th>
+            <th>
+              <%= f.time_select :saturday_start_time, minute_step: 30  , :default => {:hour => '00', :minute => '00'}  %></th>
+            <th>
+              <%= f.time_select :saturday_finish_time, minute_step: 30  , :default => {:hour => '00', :minute => '00'}  %></th>
+          </tr>
+
+          <tr class="success">
+            <th>Sunday</th>
+            <th>
+              <%= f.time_select :sunday_start_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+            <th>
+              <%= f.time_select :sunday_finish_time, minute_step: 30 , :default => {:hour => '00', :minute => '00'}  %></th>
+          </tr>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+
+     <br>
+    <%= f.submit 'Подтвердить', class: 'btn btn-success btn-block' %>
+<% end %>
+</div>
+<script>
+  $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+  }
+
+  $('#url').val(decodeURIComponent($.urlParam('doctor_id')));
+</script>

@@ -54,4 +54,16 @@
 
 <% end %>
 
+<div class="container">
+<% if @doctor.schedule.present?  %>
+<%= render @doctor.schedule %>
 
+    <%= link_to 'РЕДАГУВАТИ', edit_schedule_path(@doctor.schedule), class: 'btn btn-info btn-block' %>
+<%  else %>
+    <div class="btn btn-danger btn-block">
+         <br>
+ <h1> нема розкладу</h1>
+         </div>
+<%end %>
+
+</div>
