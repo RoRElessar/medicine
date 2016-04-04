@@ -7,7 +7,7 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    binding.pry
+
     @record = Record.new(record_params)
 
     respond_to do |format|
