@@ -4,6 +4,7 @@ class DoctorsController < ApplicationController
   end
 
   def show
+    @doctor = Doctor.find(params[:id])
   end
 
   def create
@@ -82,7 +83,7 @@ class DoctorsController < ApplicationController
     DoctorMailer.new_doctor_notification(email, password).deliver_now
     DoctorMailer.company_notification(email, password, current_company.email).deliver_now
 
-    render layout: false
+    redirect_to root_path
   end
 
   private

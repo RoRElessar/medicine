@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :records
+
   validates_presence_of :surname, :name, :patronymic, :phone, :address
   validates :surname, :name, :patronymic, length: {in: 2..20}
   validates :phone, numericality: true

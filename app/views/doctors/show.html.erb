@@ -1,1 +1,79 @@
-<%= link_to 'Logout', doc_logout_path, class: 'btn btn-danger' %>
+<div id="blue">
+  <div class="container">
+    <div class="row centered">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h4>Доктор</h4>
+
+      </div>
+    </div><!-- row -->
+  </div>
+</div>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 centered">
+        <div class="tilt">
+          <a href="#"><%= image_tag(@doctor.photo) %></a>
+        </div>
+      </div><!-- col-lg-6 -->
+      <div class="col-lg-6">
+        <h4>Лікар</h4>
+        <h4>
+          <div class="field">
+            Прізвище<br>
+            <%= @doctor.second_name %>
+          </div>
+        </h4>
+        <div class="field">
+          Імя<br>
+          <%= @doctor.name %>
+        </div>
+        <div class="field">
+          По батькові<br>
+          <%= @doctor.surname %>
+        </div>
+        <p>
+          <i class="fa fa-circle-o"></i>
+          Категорія <%= @doctor.category %>
+          <br>
+          <i class="fa fa-circle-o"></i>
+          Спеціалізація <%= @doctor.specialization %>
+          <br>
+          <i class="fa fa-circle-o"></i> Емайл <%= @doctor.email %>
+          <br>
+          <i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
+        </p>
+      </div>
+    </div><!-- row -->
+  </div>
+
+  <div class="container">
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>День</th>
+        <th>Початок роботи</th>
+        <th>Кінець роботи</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <% Date::DAYNAMES.rotate(1).each do |weekday| %>
+          <tr class="success">
+            <th><%= weekday %> </th>
+            <% if is_weekend?(@doctor.schedule, weekday) %>
+                <td colspan="2" class="warning centered">Вихідний</td>
+            <% else %>
+                <td><%= @doctor.schedule.send(weekday.downcase+'_start_time').strftime("%H - %M") %></td>
+                <td><%= @doctor.schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %></td>
+            <% end %>
+          </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

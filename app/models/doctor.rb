@@ -4,6 +4,8 @@ class Doctor < ActiveRecord::Base
 
   belongs_to :company
   has_one :schedule
+  has_one :current_schedule
+  has_many :records
 
   validates_presence_of :name, :surname, :second_name, :specialization, :photo, :email
   validates :name, :surname, :second_name, length: {in: 2..20}

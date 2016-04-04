@@ -25,4 +25,39 @@
                src = "https://maps.google.com/maps?q=<%= @company.lat %>,<%= @company.lng %>&hl=es;z=14&amp;output=embed"></iframe>
     </div>
   </div>
+
+
+
+  <% current_company.doctors.each do |doctor| %>
+      <div class="col-sm-12  doctor-list-item">
+        <div class="container-fluid well span6">
+          <div class="row-fluid">
+            <div class="col-md-2">
+              <%= image_tag(doctor.photo.url(:medium), class: 'img-circle') %>
+            </div>
+
+            <div class="col-md-3">
+              <h3><%= doctor.surname %></h3>
+              <h3><%= doctor.name %></h3>
+              <h3><%= doctor.second_name %></h3>
+            </div>
+            <div class="col-md-5">
+              <h4>Лікар <%= doctor.category %> категорії </h4>
+              <h4>Спеціалізація  <%= doctor.specialization %> </h4>
+              <h4>Email: <%= doctor.email %></h4>
+
+            </div>
+            <div class="col-md-2">
+              <%= link_to 'Записатися до лікаря', doctor_path(doctor), class: 'btn btn-info btn-block' %>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+
+
+
 </div>

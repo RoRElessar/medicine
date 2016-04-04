@@ -11,5 +11,7 @@ class CompaniesController < ApplicationController
   end
 
   def schedule
+    @company = current_company
+    @doctors = @company.doctors
   end
 end

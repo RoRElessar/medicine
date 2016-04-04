@@ -9,7 +9,11 @@ class SchedulesController < ApplicationController
   end
 
   def new
-    @schedule = Schedule.new
+    if doctor_can_create?(params[:doctor_id])
+      @schedule = Schedule.new(doctor_id: params[:doctor_id])
+    else
+      redirect_to company_doctors_path
+    end
   end
 
   def edit
@@ -18,24 +22,20 @@ class SchedulesController < ApplicationController
 
   def create
     if current_company
-      @schedule = Schedule.new(schedule_params)
-=begin
-      if params[:doctor_id]
-        @schedule.doctor_id = params[:doctor_id]
-      end
-=end
+      if doctor_can_create?(schedule_params[:doctor_id])
+        @schedule = Schedule.new(schedule_params)
 
-    #  @doctor = Doctor.find(params[:doctor_id])
-
-
-      respond_to do |format|
-        if @schedule.save
-          format.html {redirect_to company_doctors_url, notice: 'График работы успешно создан.'}
-          format.json {render :show, status: :created, location: @schedule}
-        else
-          format.html {render :new}
-          format.json {render json: @schedule.errors, status: :unprocessable_entity}
+        respond_to do |format|
+          if @schedule.save
+            format.html {redirect_to company_doctors_url, notice: 'График работы успешно создан.'}
+            format.json {render :show, status: :created, location: @schedule}
+          else
+            format.html {render :new}
+            format.json {render json: @schedule.errors, status: :unprocessable_entity}
+          end
         end
+      else
+        redirect_to company_doctors_path
       end
     end
   end
@@ -66,6 +66,11 @@ class SchedulesController < ApplicationController
   end
 
   private
+
+  def doctor_can_create?(doctor_id)
+    doctor = Doctor.where(id: doctor_id).first
+    doctor.present? && doctor.company_id == current_company.id && !doctor.schedule.present?
+  end
 
   def schedule_params
     params.require(:schedule).permit( :interval, :sunday_start_time, :sunday_finish_time, :monday_start_time, :monday_finish_time,
