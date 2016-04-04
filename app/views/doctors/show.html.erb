@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-lg-6 centered">
         <div class="tilt">
-          <a href="#"><%= image_tag(@doctor.photo) %></a>
+          <%= image_tag(@doctor.photo.url(:medium), class: 'img-circle') %>
         </div>
       </div><!-- col-lg-6 -->
       <div class="col-lg-6">
@@ -44,6 +44,7 @@
           <i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
         </p>
       </div>
+
     </div><!-- row -->
   </div>
 
