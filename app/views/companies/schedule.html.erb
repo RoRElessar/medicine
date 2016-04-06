@@ -11,16 +11,17 @@
 <div class="container">
   <table class="table table-condensed">
     <thead>
-    <tr>
-      <th>Ім'я лікаря</th>
-      <% today = Date.today %>
-      <% (today.at_beginning_of_week..today.at_end_of_week).map.each do   |day| %>
-          <th><%= day.strftime("%A - %D") %></th>
-          <% end %>
-    </tr>
+
     </thead>
     <tbody>
       <% @doctors.each do |doctor| %>
+        <tr>
+          <th>Ім'я лікаря</th>
+          <% today = Date.today %>
+          <% (today.at_beginning_of_week..today.at_end_of_week).map.each do   |day| %>
+              <th><%= day.strftime("%A - %D") %></th>
+          <% end %>
+        </tr>
         <tr>
           <td><%= doctor.name %></td>
           <% Date::DAYNAMES.rotate(1).each do |weekday| %>
