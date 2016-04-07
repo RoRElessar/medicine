@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  get 'search_suggestions' => 'doctors#search_suggestions', as: :search_suggestions
+
   resources :doctors, only: [:show, :index, :create, :update, :edit, :destroy] do
     get 'send_password', to: 'doctors#send_password', on: :collection
   end
@@ -27,4 +29,5 @@ Rails.application.routes.draw do
 
   resources :schedules, only: [:show, :new,  :create, :update, :edit, :destroy]
   resources :records, only: [:create, :destroy]
+
 end

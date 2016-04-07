@@ -61,14 +61,17 @@
 
 
       <div>
-        <form class="navbar-form" role="search">
+        <%= form_tag('#', method: 'get', id: 'header-search', class: 'navbar-form') do %>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+            <%= text_field_tag(:q, (params[:q].present? ? params[:q] : nil), class: 'form-control', placeholder: 'Поиск', autocomplete: 'off') %>
+              <i aria-hidden="true" onclick="document.getElementById('header-search').submit();"></i>
+              <ul id="results">
+                </ul>
             <div class="input-group-btn">
               <button class="btn btn-default disabled"><i class="glyphicon glyphicon-search"></i></button>
             </div>
           </div>
-        </form>
+       <% end %>
       </div>
     </div><!--/.nav-collapse -->
   </div>
