@@ -78,38 +78,29 @@
 
   <% end %>
 
-  </div>
-  </div>
 
-  <div class="row">
-    <div class="box">
-      <div class="col-lg-12">
-        <hr>
-        <h2 class="intro-text text-center">Our <strong>Team</strong>
-        </h2>
-        <hr>
-      </div>
-      <div class="col-sm-4 text-center">
-        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-        <h3>John Smith
-          <small>Job Title</small>
-        </h3>
-      </div>
-      <div class="col-sm-4 text-center">
-        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-        <h3>John Smith
-          <small>Job Title</small>
-        </h3>
-      </div>
-      <div class="col-sm-4 text-center">
-        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-        <h3>John Smith
-          <small>Job Title</small>
-        </h3>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-  </div>
+
+      <% current_user.records.each do |record| %>
+
+      <div id="blue">
+        <div class="container">
+
+
+              <h3><%= record.time %></h3>
+              <h3><%= record.doctor.surname %></h3>
+
+
+        </div><!-- container -->
+      </div><!-- blue wrap -->
+
+
+
+
+
+      <% end %>
+
+
+
 
 </div>
-<!-- /.container -->
+  </div></div>

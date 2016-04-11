@@ -7,16 +7,20 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-
-    @record = Record.new(record_params)
+    time = Time.parse params[:time]
+    record_time = Time.new(time.year, time.month, time.day, time.hour, time.min, '00:00')
+    @record = Record.new(time: record_time, doctor_id: params[:doctor_id])
+    # @record.doctor_id = params[:doctor_id]
+    # @record.time = params[:time]
+    @record.user_id = current_user.id
+    doctor = Doctor.find(params[:doctor_id])
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
+        format.html { redirect_to :back, notice: 'Record was successfully created.' }
+        DoctorMailer.new_record_notification(current_user.email, record_time , doctor).deliver_now
       else
-        format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back }
       end
     end
   end

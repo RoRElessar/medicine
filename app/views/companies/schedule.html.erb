@@ -8,14 +8,24 @@
     </div><!-- row -->
   </div><!-- container -->
 </div><!--  bluewrap -->
+  <div class="container">
+    <div class="row centered">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h4>График компании</h4>
+
+      </div>
+    </div><!-- row -->
+  </div><!-- container -->
+</div><!--  bluewrap -->
 <div class="container">
   <table class="table table-condensed">
     <thead>
 
     </thead>
     <tbody>
-      <% @doctors.each do |doctor| %>
+      <% @doctors.each do |doctor , index| %>
         <tr>
+          <% index = Date.today.at_beginning_of_week %>
           <th>Ім'я лікаря</th>
           <% today = Date.today %>
           <% (today.at_beginning_of_week..today.at_end_of_week).map.each do   |day| %>
@@ -26,14 +36,25 @@
           <td><%= doctor.name %></td>
           <% Date::DAYNAMES.rotate(1).each do |weekday| %>
             <td>
-              <% if is_weekend?(doctor.schedule, weekday) %>
+              <% index = index + 1.day %>
+              <div class="btn-danger"> <%=  p index-1.day   %> </div><br>
+              <% if is_weekend?(doctor.current_schedule, weekday) %>
                 <%= 'Вихідний' %>
               <% else %>
-                  <%= doctor.schedule.send(weekday.downcase+'_start_time').strftime("%H - %M :") %>
-                  <%= doctor.schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %>
+                  <%= doctor.current_schedule.send(weekday.downcase+'_start_time').strftime("%H - %M :") %>
+                  <%= doctor.current_schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %>
                   <br>
-                  <% (doctor.schedule.send(weekday.downcase+'_start_time').to_i..doctor.schedule.send(weekday.downcase+'_finish_time').to_i).step(doctor.schedule.interval.minutes).to_a[0...-1].each do |interval| %>
-                    <%= link_to(Time.at(interval).utc.strftime("%H - %M"), records_path(user_id: current_user, doctor_id: doctor, time: Time.at(interval).utc), method: :post) %>
+                  <% (doctor.current_schedule.send(weekday.downcase+'_start_time').to_i..doctor.current_schedule.send(weekday.downcase+'_finish_time').to_i).step(doctor.current_schedule.interval.minutes).to_a[0...-1].each do |interval| %>
+
+
+                    <% iteration_day = index-1.day %>
+                    <% iteration_time = Time.at(interval).utc %>
+                      <% record_time = Time.new(iteration_day.year, iteration_day.month, iteration_day.day, iteration_time.hour, iteration_time.min, '00:00') %>
+                      <% if Record.where(time: record_time, doctor_id: doctor.id).present? %>
+                          <%= 'Занято'  %>
+                      <% else %>
+                          <%= link_to(iteration_time.strftime("%H - %M"), records_path(user_id: current_user, doctor_id: doctor.id, time: record_time), method: :post, data: {confirm: "Are you sure?"}) %>
+                      <% end %>
                     <br>
                   <% end %>
               <% end %>
