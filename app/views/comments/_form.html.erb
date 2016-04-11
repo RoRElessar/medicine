@@ -1,0 +1,10 @@
+<%= form_for([@commented_object, @commented_object.comments.build], remote: true) do |f| %>
+<div class="comment">
+  <div class="field">
+    <%= f.text_area :body, class: 'form-control', placeholder:'Тут Ви можете залишити свій відгук'%>
+  </div>
+  <div class="field">
+    <%= f.submit :value => 'Залишити відгук' %>
+  </div>
+</div>
+<% end %>
