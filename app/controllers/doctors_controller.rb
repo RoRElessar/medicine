@@ -5,6 +5,8 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = Doctor.find(params[:id])
+    @commented_object = @doctor
+    @comments = @doctor.comments
   end
 
   def create

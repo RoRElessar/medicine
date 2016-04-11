@@ -7,6 +7,7 @@ class Company < ActiveRecord::Base
 
   has_many :doctors
   has_many :schedules
+  has_many :comments
 
   validates_presence_of :name, :phone, :address, :description, :image, :activity
   validates :name, length: {in: 2..40}

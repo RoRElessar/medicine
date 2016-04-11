@@ -101,6 +101,15 @@
       </tbody>
     </table>
   </div>
+  <h3>Відгуки</h3>
+  <div id="comments-container">
+    <%= render @comments %>
+  </div>
+  <div id="add_comment">
+  <% if current_user %>
+    <%= render 'comments/form' %>
+  <% end %>
+  </div>
 </div>
 
 <% if current_doctor.present? %>

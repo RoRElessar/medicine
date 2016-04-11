@@ -5,6 +5,8 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @commented_object = @company
+    @comments = @company.comments
   end
 
   def doctors

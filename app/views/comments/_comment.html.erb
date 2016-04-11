@@ -1,0 +1,11 @@
+    <div class="comment">
+      <p>
+          <strong><%= comment.user.name %></strong>
+        <span class="date">
+          &nbsp; <%= comment.created_at.to_time.strftime('%m.%d.%Y at %H:%M') %>
+        </span>
+      </p>
+      <p>
+        <%= comment.body %>
+      </p>
+    </div>

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :records
+  has_many :comments
 
   validates_presence_of :surname, :name, :patronymic, :phone, :address
   validates :surname, :name, :patronymic, length: {in: 2..20}

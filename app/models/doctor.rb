@@ -6,6 +6,7 @@ class Doctor < ActiveRecord::Base
   has_one :schedule
   has_one :current_schedule
   has_many :records
+  has_many :comments
 
   validates_presence_of :name, :surname, :second_name, :specialization, :photo, :email
   validates :name, :surname, :second_name, length: {in: 2..20}
