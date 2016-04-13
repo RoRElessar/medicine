@@ -91,7 +91,12 @@ class DoctorsController < ApplicationController
   def search_suggestions
     query = params[:query]
     results = if params[:query].present?
-                Doctor.where('name ILIKE ? OR surname ILIKE ?', "%#{query}%", "%#{query}%").select(:surname).collect(&:surname)
+                response = []
+                Doctor.where('name ILIKE ? OR surname ILIKE ?', "%#{query}%", "%#{query}%").each do |doctor|
+                  obj = {id: doctor.id, fullname: doctor.name + ' ' + doctor.surname, photo: doctor.photo.url(:small)}
+                  response << obj
+                end
+                response
               else
                 []
               end

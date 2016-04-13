@@ -16,7 +16,8 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function () {
+var ready;
+ready = function() {
   $('.alert').delay(3000).fadeOut();
 
   $('.weekend').click(function () {
@@ -46,9 +47,9 @@ $(document).ready(function () {
           $('#results').empty();
           $('#results').show();
           $.each(data, function(index, result) {
-            $('#results').append('<li>'+result+'</li>');
+            $('#results').append('<li><img src="' + result.photo + '"> &nbsp '+result.fullname+'</li>');
             $('#results').click(function () {
-                location.href = '/doctors/'
+                location.href = '/doctors/'+result.id;
                 //this.href = this.href + ('&doctor_id=').val().open;
             });
           });
@@ -57,4 +58,6 @@ $(document).ready(function () {
         //  $('#results').hide();
         //}
       });
-});
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
