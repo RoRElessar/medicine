@@ -59,7 +59,7 @@
         <% index = Date.today.at_beginning_of_week %>
         <th>Ім'я лікаря</th>
         <% today = Date.today %>
-        <% (today.at_beginning_of_week..today.at_end_of_week).map.each do   |day| %>
+        <% (today.at_beginning_of_week..today.at_end_of_week).map.each do |day| %>
             <th><%= day.strftime("%A - %D") %></th>
         <% end %>
       </tr>
@@ -68,7 +68,8 @@
         <% Date::DAYNAMES.rotate(1).each do |weekday| %>
             <td>
               <% index = index + 1.day %>
-              <div class="btn-danger"> <%=  p index-1.day   %> </div><br>
+              <div class="btn-danger"> <%= p index-1.day %> </div>
+              <br>
               <% if is_weekend?(doctor.current_schedule, weekday) %>
                   <%= 'Вихідний' %>
               <% else %>
@@ -82,15 +83,21 @@
                       <% iteration_time = Time.at(interval).utc %>
                       <% record_time = Time.new(iteration_day.year, iteration_day.month, iteration_day.day, iteration_time.hour, iteration_time.min, '00:00') %>
                       <% if Record.where(time: record_time, doctor_id: doctor.id).present? %>
-                        <% if current_doctor  %>
-                          <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.name %>
-                        <% else %>
-                          <%= 'Занято'  %>
-                        <% end %>
+                          <% if current_doctor %>
+                              <%= iteration_time.strftime("%H - %M") %>
+                              <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.name %>
+                              <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.surname %>
+                          <% else %>
+                              <% if current_user %>
+                                  <span class="btn-danger"> <%= 'Ваш запис' %></span>
+                              <% else %>
+                                  <span class="btn-success">  <%= 'Занято' %></span>
+                              <% end %>
+                          <% end %>
                       <% elsif current_user %>
-                        <%= link_to(iteration_time.strftime("%H - %M"), records_path(user_id: current_user, doctor_id: doctor.id, time: record_time), method: :post, data: {confirm: "Are you sure?"}) %>
-                        <% else %>
-                        <%= iteration_time.strftime("%H - %M") %>
+                          <%= link_to(iteration_time.strftime("%H - %M"), records_path(user_id: current_user, doctor_id: doctor.id, time: record_time), method: :post, data: {confirm: "Are you sure?"}) %>
+                      <% else %>
+                          <%= iteration_time.strftime("%H - %M") %>
                       <% end %>
                       <br>
                   <% end %>
@@ -106,13 +113,13 @@
     <%= render @comments %>
   </div>
   <div id="add_comment">
-  <% if current_user %>
-    <%= render 'comments/form' %>
-  <% end %>
+    <% if current_user %>
+        <%= render 'comments/form' %>
+    <% end %>
   </div>
 </div>
 
 <% if current_doctor.present? %>
-  <%= link_to 'Logout', doc_logout_path, class: 'btn btn-danger' %>
+    <%= link_to 'Logout', doc_logout_path, class: 'btn btn-danger' %>
 
 <% end %>

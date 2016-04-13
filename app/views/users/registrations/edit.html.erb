@@ -77,21 +77,16 @@
           </div>
 
   <% end %>
-
-
-
+  <br>
       <% current_user.records.each do |record| %>
 
-      <div id="blue">
-        <div class="container">
 
-
-              <h3><%= record.time %></h3>
+        <div class="container btn-danger">
+              <h3><%= record.time.in_time_zone('Moscow') %></h3>
               <h3><%= record.doctor.surname %></h3>
-
-
+              <h3><%= record.doctor.name %></h3>
         </div><!-- container -->
-      </div><!-- blue wrap -->
+
 
 
 
