@@ -73,6 +73,7 @@
               <% if is_weekend?(doctor.current_schedule, weekday) %>
                   <%= 'Вихідний' %>
               <% else %>
+                  <% if Time.now.to_i < index.to_time.to_i %>
                   <%= doctor.current_schedule.send(weekday.downcase+'_start_time').strftime("%H - %M :") %>
                   <%= doctor.current_schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %>
                   <br>
@@ -100,6 +101,9 @@
                           <%= iteration_time.strftime("%H - %M") %>
                       <% end %>
                       <br>
+                  <% end %>
+                      <% else %>
+                      <p align="center" class="btn-warning">  Даний день уже закінчився </p>
                   <% end %>
               <% end %>
             </td>
