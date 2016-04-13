@@ -43,3 +43,22 @@
   color: #468847;
   text-align: left;
 }
+
+ul#results {
+  position: absolute;
+  background-color: white;
+  z-index: 6666;
+  list-style: none;
+  padding: 4px 20px;
+  border: 1px solid #000000;
+  margin-top: 35px;
+  width: 239px;
+  display: none;
+  li {
+    cursor: pointer;
+    font-weight: bold;
+    &:hover {
+      color: #337ab7;
+    }
+  }
+}

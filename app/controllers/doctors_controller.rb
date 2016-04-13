@@ -88,6 +88,16 @@ class DoctorsController < ApplicationController
     redirect_to root_path
   end
 
+  def search_suggestions
+    query = params[:query]
+    results = if params[:query].present?
+                Doctor.where('name ILIKE ? OR surname ILIKE ?', "%#{query}%", "%#{query}%").select(:surname).collect(&:surname)
+              else
+                []
+              end
+    render json: results
+  end
+
   private
 
   def doctor_params
