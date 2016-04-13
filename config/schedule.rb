@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# every :sunday, :at => '21:59' do
+#every :sunday, :at => '21:59' do
 every 1.minute do
-  runner "copy_doctors_schedule"
+  rake "copy_doctors_schedule"
 end
