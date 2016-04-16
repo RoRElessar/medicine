@@ -31,18 +31,14 @@
                 <div class="btn-success"> <%= p index-1.day %> </div>
                 <br>
                 <% if is_weekend?(doctor.current_schedule, weekday) %>
-                    <p align="center"  class="btn-danger"><br>Вихідний</p>
+                    <p align="center" class="btn-danger"><br>Вихідний</p>
                 <% else %>
-                   <p align="center"  class="btn-warning">Час роботи<br>
-
-                     <%= doctor.current_schedule.send(weekday.downcase+'_start_time').strftime("%H - %M :") %>
-                     <%= doctor.current_schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %>
-                   </p>
-
+                    <p align="center" class="btn-warning">Час роботи<br>
+                      <%= doctor.current_schedule.send(weekday.downcase+'_start_time').strftime("%H - %M :") %>
+                      <%= doctor.current_schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %>
+                    </p>
                     <br>
                     <% (doctor.current_schedule.send(weekday.downcase+'_start_time').to_i..doctor.current_schedule.send(weekday.downcase+'_finish_time').to_i).step(doctor.current_schedule.interval.minutes).to_a[0...-1].each do |interval| %>
-
-
                         <% iteration_day = index-1.day %>
                         <% iteration_time = Time.at(interval).utc %>
                         <% record_time = Time.new(iteration_day.year, iteration_day.month, iteration_day.day, iteration_time.hour, iteration_time.min, '00:00') %>
