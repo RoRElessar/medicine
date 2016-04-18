@@ -1,4 +1,5 @@
 task copy_doctors_schedule: :environment do
+  CurrentSchedule.destroy_all
   Schedule.all.each do |schedule|
     data = {
         sunday_start_time: schedule.sunday_start_time,
