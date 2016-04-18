@@ -15,8 +15,6 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="<%= current_page?(companies_index_path) ? 'active' : '' %>"><%= link_to('Список компаній', companies_index_path) %></li>
         <li class="<%= current_page?(doctors_path) ? 'active' : '' %>"><%= link_to 'Cписок лікарів', doctors_path  %></li>
-        <li><%= link_to('SERVICES', welcome_services_path) %></li>
-        <li><%= link_to('WORKS', welcome_works_path) %></li>
         <% if current_company %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_company.name %> <span class="caret"></span></a>
@@ -60,19 +58,7 @@
       </ul>
 
 
-      <div>
-        <%= form_tag('#', method: 'get', id: 'header-search', class: 'navbar-form') do %>
-          <div class="input-group">
-            <%= text_field_tag(:q, (params[:q].present? ? params[:q] : nil), class: 'form-control', placeholder: 'Поиск', autocomplete: 'off') %>
-              <i aria-hidden="true" onclick="document.getElementById('header-search').submit();"></i>
-              <ul id="results">
-                </ul>
-            <div class="input-group-btn">
-              <button class="btn btn-default disabled"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-          </div>
-       <% end %>
-      </div>
+
     </div><!--/.nav-collapse -->
   </div>
 
