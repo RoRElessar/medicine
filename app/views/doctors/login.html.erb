@@ -1,7 +1,35 @@
-<form action="/doc/login">
-  <input type="email" name="email">
-  <br>
-  <input type="password" name="password">
-  <br>
-  <input type="submit">
-</form>
+<div class="container">
+  <div class="row">
+    <!-- Article main content -->
+    <article class="col-xs-12 maincontent">
+      <header class="page-header">
+      </header>
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3 class="thin text-center">Sign in to your account</h3>
+            <p class="text-center text-muted"></p>
+            <hr>
+            <form action="/doc/login">
+              <div class="top-margin">
+                <label>Email <span class="text-danger">*</span></label>
+                <input type="email" name="email" class="form-control">
+              </div>
+              <div class="top-margin">
+                <label>Password <span class="text-danger">*</span></label>
+                <input type="password" name="password" class="form-control">
+              </div>
+              <hr>
+              <div class="row">
+                <div class="thin text-center">
+                  <input type="submit" class="btn btn-success">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </article>
+    <!-- /Article -->
+  </div>
+</div>  <!-- /container -->
