@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :mailer_set_url_options
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
@@ -25,4 +26,9 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+  def mailer_set_url_options
+    ActionMailer::Base.default_url_options[:host] = request.host_with_port
+  end
+
+
 end
