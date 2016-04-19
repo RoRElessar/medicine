@@ -13,7 +13,18 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+      @comment.destroy
+  end
 
+  def edit
+  end
+
+  def update
+    if @comment.update(body: params[:comment][:body])
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   private
@@ -22,8 +33,9 @@ class CommentsController < ApplicationController
       if params[:company_id].present?
         @commented_object = Company.find(params[:company_id])
       elsif params[:doctor_id].present?
-        @commented_object = Doctor.find(params[:doctor_id])
+        @commented_object = Doctor.find(params[:doctor_id])  
       end
+      @comment = Comment.find(params[:id]) if params[:id].present?
     end
 
     def comment_params

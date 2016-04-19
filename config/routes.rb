@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'comments/destroy'
 
+  resources :comments, only: [:edit, :destroy]
+
   devise_for :companies
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :doctors, only: [:show, :index, :create, :update, :edit, :destroy] do
     get 'send_password', to: 'doctors#send_password', on: :collection
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
   end
 
   get 'welcome/index'
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'companies/index', to: 'companies#index'
   resources :companies, only: [:show, :index, :create, :update, :edit, :destroy] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
   end
   get 'company/doctors', to: 'companies#doctors'
   get 'company/schedule', to: 'companies#schedule'

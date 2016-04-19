@@ -1,11 +1,16 @@
-    <div class="comment">
-      <p>
-          <strong><%= comment.user.name %></strong>
+    <div id="comment_<%= comment.id %>">
+      <header>
+        <strong><%= comment.user.name %></strong>
         <span class="date">
           &nbsp; <%= comment.created_at.to_time.strftime('%m.%d.%Y at %H:%M') %>
         </span>
-      </p>
-      <p>
+      </header>
+      <main>
         <%= comment.body %>
-      </p>
+      </main>
+      <footer>
+        <% if current_user.id == comment.user.id %>
+          <%= link_to 'Destroy', comment_path(comment), class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+        <% end %>
+      </footer>
     </div>
