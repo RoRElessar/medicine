@@ -82,34 +82,38 @@
                         <%= doctor.current_schedule.send(weekday.downcase+'_start_time').strftime("%H - %M :") %>
                         <%= doctor.current_schedule.send(weekday.downcase+'_finish_time').strftime("%H - %M") %>
                       </p>
-                  <br>
-                  <% (doctor.current_schedule.send(weekday.downcase+'_start_time').to_i..doctor.current_schedule.send(weekday.downcase+'_finish_time').to_i).step(doctor.current_schedule.interval.minutes).to_a[0...-1].each do |interval| %>
-
-
-                      <% iteration_day = index - 1.day %>
-                      <% iteration_time = Time.at(interval).utc %>
-                      <% record_time = Time.new(iteration_day.year, iteration_day.month, iteration_day.day, iteration_time.hour, iteration_time.min, '00:00') %>
-                      <% if Record.where(time: record_time, doctor_id: doctor.id).present? %>
-                          <% if current_doctor %>
-                              <%= iteration_time.strftime("%H - %M") %>
-                              <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.name %>
-                              <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.surname %>
-                          <% else %>
-                              <% if current_user %>
-                                  <span class="btn-danger"> <%= 'Ваш запис' %></span>
-                              <% else %>
-                                  <span class="btn-success">  <%= 'Занято' %></span>
-                              <% end %>
-                          <% end %>
-                      <% elsif current_user %>
-                          <%= link_to(iteration_time.strftime("%H - %M"), records_path(user_id: current_user, doctor_id: doctor.id, time: record_time), method: :post, data: {confirm: 'Для запису до лікаря введіть його Призвище', verify: doctor.second_name, verify_text: doctor.second_name}) %>
-                      <% else %>
-                          <%= iteration_time.strftime("%H - %M") %>
-                      <% end %>
                       <br>
-                  <% end %>
-                      <% else %>
-                      <p align="center" class="btn-warning">  Даний день уже закінчився </p>
+                      <% (doctor.current_schedule.send(weekday.downcase+'_start_time').to_i..doctor.current_schedule.send(weekday.downcase+'_finish_time').to_i).step(doctor.current_schedule.interval.minutes).to_a[0...-1].each do |interval| %>
+
+
+                          <% iteration_day = index - 1.day %>
+                          <% iteration_time = Time.at(interval).utc %>
+                          <% record_time = Time.new(iteration_day.year, iteration_day.month, iteration_day.day, iteration_time.hour, iteration_time.min, '00:00') %>
+                          <% if Record.where(time: record_time, doctor_id: doctor.id).present? %>
+                              <% if current_doctor %>
+                                  <%= iteration_time.strftime("%H - %M") %>
+                                  <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.name %>
+                                  <%= Record.where(time: record_time, doctor_id: doctor.id).first.user.surname %>
+                              <% else %>
+                                  <% if current_user %>
+                                      <span class="btn-danger"> <%= 'Ваш запис' %></span>
+                                  <% else %>
+                                      <span class="btn-success">  <%= 'Занято' %></span>
+                                  <% end %>
+                              <% end %>
+                          <% elsif current_user %>
+                              <% if record_time.to_i<Time.now.to_i %>
+                                  <span class="alert-danger ">Час вийшов</span>
+                              <% else %>
+                                  <%= link_to(iteration_time.strftime("%H - %M"), records_path(user_id: current_user, doctor_id: doctor.id, time: record_time), method: :post, data: {confirm: 'Для запису до лікаря введіть його Призвище', verify: doctor.second_name, verify_text: doctor.second_name}) %>
+                              <% end %>
+                          <% else %>
+                              <%= iteration_time.strftime("%H - %M") %>
+                          <% end %>
+                          <br>
+                      <% end %>
+                  <% else %>
+                      <p align="center" class="btn-warning"> Даний день уже закінчився </p>
                   <% end %>
               <% end %>
             </td>
