@@ -9,7 +9,7 @@
         <%= comment.body %>
       </main>
       <footer>
-        <% if current_user.id == comment.user.id %>
+        <% if current_user &&  current_user.id == comment.user.id %>
           <%= link_to 'Destroy', comment_path(comment), class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
         <% end %>
       </footer>
